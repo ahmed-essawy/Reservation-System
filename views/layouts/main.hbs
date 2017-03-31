@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Project">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    {{> head}}
+</head>
+<body>
+    <div class="container">
+        {{#if CPanel}}
+        {{> sidebar}}
+        {{/if}}
+        {{{body}}}
+    </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
-﻿# MEAN Stack Project
-ITI - MEAN Stack Project (MongoDB, Express, AngularJS, Node.js)
+﻿# Reservation System Project
+<h5>ITI - MEAN Stack Project (MongoDB, Express, AngularJS, Node.js)</h5>
 <h3>Reservation system</h3>
 <h5>Using:</h5>
 - <b>MongoDB</b><br/>
