@@ -1,0 +1,26 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "MEAN stack project",
+  "main": "server.js",
+  "author": {
+    "name": "Ahmed",
+    "email": "ahm.elessawy@gmail.com",
+    "url": "http://wwww.ahm-elessawy.com"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "socket.io": "^1.7.3"
+  },
+  "keywords": [
+    "ITI",
+    "MEAN"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "readme": "README.md"
+}
