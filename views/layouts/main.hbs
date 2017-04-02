@@ -4,11 +4,10 @@
     {{> head}}
 </head>
 <body>
-    <div class="container">
-        {{#if CPanel}}
-        {{> sidebar}}
-        {{/if}}
+    <div class="container-fluid" ng-cloak="">
         {{{body}}}
     </div>
+    <script src="./js/Controllers/c1.js" language="javascript" type="text/javascript"></script>
+    <script src="./js/Services/API.js" language="javascript" type="text/javascript"></script>
 </body>
 </html>

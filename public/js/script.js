@@ -2,11 +2,13 @@
     if (localStorage.getItem("User")) {
         $("#loginbtn > li").toggle();
         $("#loginbtn > li #username").text(JSON.parse(localStorage.getItem("User")).name);
+        if (window.location.pathname == '/login' || window.location.pathname == '/register')
+            window.location = "/admincp";
     }
 })
 function login() {
     var data = $("#loginform").serializeArray();
-    $.post('logindata', { username: data[0]['value'], password: data[1]['value'] }, data => {
+    $.post('loginuser', { username: data[0]['value'], password: data[1]['value'] }, data => {
         if (data.correct) {
             localStorage.setItem("User", JSON.stringify(data.user));
             window.location = "/admincp";
@@ -18,4 +20,13 @@ function login() {
 function logout() {
     localStorage.removeItem("User");
     window.location = "/";
-} 
+}
+function register() {
+    var data = $("#loginform").serializeArray();
+    $.post('registeruser', { name: data[0]['value'], username: data[1]['value'], password: data[2]['value'] }, data => {
+        if (data.correct) {
+            localStorage.setItem("User", JSON.stringify(data.user));
+            window.location = "/admincp";
+        }
+    });
+}

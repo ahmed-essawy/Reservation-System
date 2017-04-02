@@ -1,5 +1,1 @@
-angular.module("Project", ["ngRoute"])
-    .config(($routeProvider, $locationProvider) => {
-        $routeProvider.when("", { templateUrl: "", controller: "" }).otherwise({ redirectTo: "" });
-        $locationProvider.hashPrefix('');
-    });
+angular.module("Project", ["ngRoute"], ["$interpolateProvider", $interpolateProvider =>$interpolateProvider.startSymbol('[[').endSymbol(']]')])

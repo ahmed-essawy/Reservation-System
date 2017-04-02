@@ -1,1 +1,54 @@
-﻿<h1>Login</h1>
+﻿<div ng-controller="HomeCtrl">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <tr class="active" ng-hide="flag=$index">
+                <td><a ng-click="sorting('index')">ID</a></td>
+                <td><a ng-click="sorting('name')">Name</a></td>
+                <td><a ng-click="sorting('dept')">Departement</a></td>
+                <td><a ng-click="sorting('joinDate')">Join Date</a></td>
+                <td><a ng-click="sorting('salary')">Salary</a></td>
+                <td><a ng-click="sorting('eval')">Eval</a></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="emp in Employees" ng-hide="flag==$index">
+                <td>[[$index]]</td>
+                <td>[[emp.name]]</td>
+                <td>[[emp.dept]]</td>
+                <td>[[emp.joinDate]]</td>
+                <td>[[emp.salary]]</td>
+                <td>[[emp.eval]]</td>
+                <td><a ng-click="editEmp([[$index]])" class="btn btn-info">Edit</a></td>
+                <td><a ng-click="delEmp([[$index]]);flag=$index" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Employee</button>
+    <div id="AddStudent" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h4 class="modal-title">Add Employee</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <input type="text" class="form-control" ng-model="formData.name" placeholder="Enter name">
+                        <br />
+                        <input type="text" class="form-control" ng-model="formData.dept" placeholder="Enter department">
+                        <br />
+                        <input type="date" class="form-control" ng-model="formData.joinDate" placeholder="Enter join date">
+                        <br />
+                        <input type="number" class="form-control" ng-model="formData.salary" placeholder="Enter salary">
+                        <br />
+                        <input type="number" class="form-control" ng-model="formData.eval" placeholder="Enter eval">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="addNewEmp()" data-dismiss="modal">Add</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
