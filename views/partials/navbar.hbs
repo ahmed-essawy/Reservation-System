@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <nav class="navbar navbar-default col-xs-12{{#unless CPanel}} col-md-9 col-md-offset-2{{/unless}}">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <i class="icon-bar"></i><i class="icon-bar"></i><i class="icon-bar"></i>
+                </button>
+                <a class="navbar-brand" href="/">MEAN Stack</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    {{#if CPanel}}
+                    <li><a href="/admincp" ng-class="{active: $route.current.activetab == 'Home'}">Home</a></li>
+                    {{else}}
+                    <li><a href="/about" ng-class="{active: $route.current.activetab == 'About'}">About</a></li>
+                    <li><a href="/contact" ng-class="{active: $route.current.activetab == 'About'}">Contact Us</a></li>
+                    {{/if}}
+                </ul>
+                <ul id="loginbtn" class="nav navbar-nav navbar-right">
+                    {{> login}}
+                    {{> logout}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
