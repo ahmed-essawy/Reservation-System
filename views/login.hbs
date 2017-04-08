@@ -1,10 +1,6 @@
-﻿<style>
-    body {
-        background-color: #eee;
-    }
-
+<style>
     .form-signin {
-        margin-top: 10%;
+        margin-top: 5%;
         border: 3px dashed rgba(0,0,0,0.1);
     }
 
@@ -32,6 +28,7 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
+
         .form-signin input[name="username"] {
             margin-top: -1px;
             margin-bottom: -1px;
@@ -42,15 +39,18 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
         .form-signin > a {
             float: right;
         }
+
     button {
         margin-bottom: 10px;
     }
 </style>
-<div class="row">
-    <form id="loginform" data-toggle="validator" class="form-signin col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-lg-4 col-md-offset-4">        {{#if login}}
+<div class="row" ng-controller="LoginCtrl">
+    <form id="loginform" data-toggle="validator" class="form-signin col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-lg-4 col-md-offset-4 col-lg-offset-5">
+        {{#if login}}
         <div id="error"></div>
         <h2 class="form-signin-heading">Please login</h2>
         <input type="text" class="form-control" name="username" placeholder="Username" required="required" autofocus="autofocus" />

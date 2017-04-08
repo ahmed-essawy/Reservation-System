@@ -1,4 +1,4 @@
-﻿<div ng-controller="HomeCtrl">
+<div ng-controller="CPHomeCtrl">
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <tr class="active" ng-hide="flag=$index">
@@ -9,21 +9,23 @@
                 <td><a ng-click="sorting('salary')">Salary</a></td>
                 <td><a ng-click="sorting('eval')">Eval</a></td>
                 <td></td>
-                <td></td>
             </tr>
-            <tr ng-repeat="emp in Employees" ng-hide="flag==$index">
+            <tr ng-repeat="emp in Employees" ng-hide="flag==$index" id="[[emp._id]]">
                 <td>[[$index]]</td>
-                <td>[[emp.name]]</td>
-                <td>[[emp.dept]]</td>
-                <td>[[emp.joinDate]]</td>
-                <td>[[emp.salary]]</td>
-                <td>[[emp.eval]]</td>
-                <td><a ng-click="editEmp([[$index]])" class="btn btn-info">Edit</a></td>
-                <td><a ng-click="delEmp([[$index]]);flag=$index" class="btn btn-danger">Delete</a></td>
+                <td><input type="text" readonly="readonly" class="inputs" name="name" value="[[emp.name]]" /></td>
+                <td><input type="text" readonly="readonly" class="inputs" name="dept" value="[[emp.dept]]" /></td>
+                <td><input type="date" readonly="readonly" class="inputs" name="joinDate" value="[[emp.joinDate | date:'yyyy-MM-dd']]" /></td>
+                <td><input type="text" readonly="readonly" class="inputs" name="salary" value="[[emp.salary]]" /></td>
+                <td><input type="text" readonly="readonly" class="inputs" name="eval" value="[[emp.eval]]" /></td>
+                <td class="text-nowrap">
+                    <a ng-click="editEmp($index,[[emp._id]])" class="btn btn-info">Edit</a>
+                    <a ng-click="delEmp([[emp._id]]);flag=$index" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         </table>
     </div>
     <button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Employee</button>
+    <span id="response" class="right"></span>
     <div id="AddStudent" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
