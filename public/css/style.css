@@ -26,3 +26,78 @@
     .scrollbar::-webkit-scrollbar-thumb {
         background-color: #265a88;
     }
+
+.row {
+    margin-bottom: 15px;
+}
+
+.slide-img {
+    margin-bottom: 15px;
+}
+
+.seprator1 {
+    height: 20px;
+}
+
+.seprator2 {
+    height: 20px;
+}
+
+.seprator3 {
+    height: 75px;
+}
+
+.middle-post-icon {
+    font-size: 50px;
+    color: #2fa4e7;
+}
+
+.section-sep {
+    text-align: center;
+}
+
+    .section-sep i {
+        color: #2fa4e7;
+        font-size: 30px
+    }
+
+    .section-sep hr {
+        background-color: #2fa4e7;
+        border: 0;
+        margin-top: -12px;
+        height: 3px;
+    }
+
+.media {
+    font-size: 60px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .slide-menu {
+        position: fixed
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .slide-menu .bookmark {
+        width: 18%;
+        margin-left: 2%;
+    }
+}
+
+@media (min-width: 992px) {
+    .slide-menu .menu-img {
+        margin-bottom: 5%;
+    }
+}
+
+.inputs {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+}
+
+.right {
+    float: right
+}

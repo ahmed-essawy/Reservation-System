@@ -30,3 +30,8 @@ function register() {
         }
     });
 }
+function html_resp(msg, cssClass) {
+    $("#response").text(msg).addClass(cssClass).fadeOut(4000, () => {
+        $("#response").text("").removeClass(cssClass).show();
+    });
+}

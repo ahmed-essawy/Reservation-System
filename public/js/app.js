@@ -1,1 +1,0 @@
-angular.module("Project", ["ngRoute"], ["$interpolateProvider", $interpolateProvider =>$interpolateProvider.startSymbol('[[').endSymbol(']]')])
