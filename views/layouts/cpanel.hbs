@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Cpanel">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <base href="/admincp/" />
+    {{> meta}}
+    {{> head}}
+</head>
+<body>
+    <div class="container-fluid" ng-cloak="">
+        {{> navbar}}
+        <div ng-view="" class="row col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">{{{body}}}</div>
+    </div>
+    {{> scripts}}
+</body>
+</html>

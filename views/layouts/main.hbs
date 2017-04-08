@@ -1,13 +1,27 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Project">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Main">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <base href="/" />
+    {{> meta}}
     {{> head}}
 </head>
 <body>
-    <div class="container-fluid" ng-cloak="">
-        {{{body}}}
+    <div class="container" ng-cloak="">
+        <div class="row slide-menu">
+            <div class="col-md-2">
+                <div class="hidden-sm hidden-md hidden-lg col-xs-12 seprator1"></div>
+                <div class="hidden-xs col-sm-12  col-lg-10"><img src="images/bookmark.png" class="bookmark img-responsive" alt="Alternate Text" /></div>
+                <a href="#sec-1"><img src="images/250x250.png" class="menu-img img-responsive img-circle col-xs-6 col-sm-3 col-md-12 col-lg-10 col-md-offset-0 col-xs-offset-3 col-sm-offset-0" alt="Alternate Text" /></a>
+                <div class="hidden-sm hidden-md hidden-lg col-xs-12 seprator2"></div>
+                <a href="#sec-2" class="menu-img img-circle col-xs-4 col-sm-3 col-md-12 col-lg-10"><img src="images/250x250.png" class="img-responsive img-circle" alt="Alternate Text" /></a>
+                <a href="#sec-3" class="menu-img img-circle col-xs-4 col-sm-3 col-md-12 col-lg-10"><img src="images/250x250.png" class="img-responsive img-circle" alt="Alternate Text" /></a>
+                <a href="#sec-4" class="menu-img img-circle col-xs-4 col-sm-3 col-md-12 col-lg-10"><img src="images/250x250.png" class="img-responsive img-circle" alt="Alternate Text" /></a>
+            </div>
+        </div>
+        <div class="hidden-xs hidden-sm seprator3"></div>
+        {{> navbar}}
+        <div ng-view="" class="col-xs-12 col-md-9 col-md-offset-2">{{{body}}}</div>
     </div>
-    <script src="./js/Controllers/c1.js" language="javascript" type="text/javascript"></script>
-    <script src="./js/Services/API.js" language="javascript" type="text/javascript"></script>
+    {{> scripts}}
 </body>
 </html>
