@@ -22,17 +22,49 @@ Mongodb.MongoClient.connect("mongodb://127.0.0.1:27017/MEANProject", (err, db) =
         .get(new RegExp("^\\/((?:index|default)(\\.(?:htm|html))?)?(\\?.*)?$"), (req, res) => {
             res.render('home');
         })
-        .get(new RegExp("login(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
-            res.render('login', { login: true });
+        .get(new RegExp("home(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('home', { layout: false, login: true });
+            else
+                res.redirect('/#/home');
         })
-        .get(new RegExp("register(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
-            res.render('login', { register: true });
+        .get(new RegExp("profile(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('profile', { layout: false, CPanel: true });
+            else
+                res.redirect('/admincp/#/profile');
         })
-        .get(new RegExp("permission(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
-            res.render('cp-perm');
+        .get(new RegExp("/admincp.*$"), (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('cp-home', { layout: false, CPanel: true });
+            else
+                res.render('cp-home', { layout: "cpanel", CPanel: true });
         })
-        .get(new RegExp("admincp(\\?.*)?$"), (req, res) => {
-            res.render('cp-home', { showAngular: true, CPanel: true });
+        .get(new RegExp("about(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('about', { layout: false });
+            else
+                res.redirect('/#/about');
+        })
+        .get(new RegExp("contact(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('contact', { layout: false });
+            else
+                res.redirect('/#/contact');
+        })
+        .get(new RegExp("login(\\.(?:htm|html))?(\\?.*)?$"),
+        (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('login', { layout: false, login: true });
+            else
+                res.redirect('/#/login');
+        })
+        .get(new RegExp("register(\\.(?:htm|html))?(\\?.*)?$"),
+        (req, res) => {
+            if (req.xhr || req.headers.accept.indexOf('json') > -1)
+                res.render('login', { layout: false, register: true });
+            else
+                res.redirect('/#/register');
         })
         .post("/loginuser", (req, res) => {
             db.collection("Users").find({ username: req.body.username, password: md5(req.body.password) }).toArray((err, data) => {
@@ -50,12 +82,27 @@ Mongodb.MongoClient.connect("mongodb://127.0.0.1:27017/MEANProject", (err, db) =
             })
         })
         .get("/API/Employees", (req, res) => {
-            db.collection("Employees").find().toArray((err, data) => { res.json(data) });
+            db.collection("Employees").find().toArray((err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
         })
         .post("/API/Employee", (req, res) => {
-            var resp = db.collection("Employees").insertOne({ name: req.body.name, dept: req.body.dept, joinDate: req.body.joinDate, salary: req.body.salary, eval: req.body.eval });
+            db.collection("Employees").insertOne({ name: req.body.name, dept: req.body.dept, joinDate: req.body.joinDate, salary: req.body.salary, eval: req.body.eval }, (err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
         })
-        .post("/API/DelEmp", (req, res) => {
-            db.collection("Employees").remove({ name: req.body.name, dept: req.body.dept, joinDate: req.body.joinDate, salary: req.body.salary, eval: req.body.eval });
+        .put("/API/Employee", (req, res) => {
+            db.collection("Employees").updateOne({ _id: new Mongodb.ObjectId(req.body._id) }, { name: req.body.name, dept: req.body.dept, joinDate: req.body.joinDate, salary: req.body.salary, eval: req.body.eval }, { upsert: true }, (err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
         })
+        .delete("/API/Employee", (req, res) => {
+            db.collection("Employees").remove({ _id: new Mongodb.ObjectId(req.body._id) }, (err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
+        });
 })
