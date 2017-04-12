@@ -94,7 +94,7 @@ Mongodb.MongoClient.connect("mongodb://127.0.0.1:27017/MEANProject", (err, db) =
         .post("/API/Employee", (req, res) => {
             db.collection("Employees").insertOne({ name: req.body.name, dept: req.body.dept, joinDate: req.body.joinDate, salary: req.body.salary, eval: req.body.eval }, (err, data) => {
                 if (err) return res.send(err);
-                else res.json(data);
+                else res.json(data.ops);
             });
         })
         .put("/API/Employee", (req, res) => {

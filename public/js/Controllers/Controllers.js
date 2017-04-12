@@ -16,7 +16,7 @@ App.controller("CPHomeCtrl", ["$scope", "$filter", "API", function ($scope, $fil
 
     $scope.addNewEmp = function () {
         API.AddEmp($scope.formData).then(data => {
-            $scope.Employees.push(data.config.data);
+            $scope.Employees.push(data.data[0]);
             $scope.formData = "";
             html_resp("Employee added successfully!", "text-success");
         }, () => html_resp("Failed Adding Employee!", "text-danger"));
@@ -44,7 +44,7 @@ App.controller("CPHomeCtrl", ["$scope", "$filter", "API", function ($scope, $fil
             }, () => html_resp("Failed Editing Employee!", "text-danger"));
         }
     }
-    $scope.delEmp = function (id) { API.DelEmp({ _id: id[0][0] }).then(() => { }, () => html_resp("Failed Deleting Employee!", "text-danger")); }
+    $scope.delEmp = function (id) { API.DelEmp({ _id: id[0][0] }).then(() => html_resp("Employee deleted successfully!", "text-success"), () => html_resp("Failed deleting Employee!", "text-danger")); }
 
     $scope.sorting = (pattern) => {
         pattern = ($scope.sign = $scope.sign == "+" ? "-" : "+") + pattern;
