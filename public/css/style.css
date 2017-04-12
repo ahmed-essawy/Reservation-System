@@ -101,3 +101,52 @@
 .right {
     float: right
 }
+
+.has-error span {
+    position: absolute;
+    margin-top: -27px;
+    right: 25px;
+    font-weight: 900;
+}
+
+.form-signin {
+    margin-top: 5%;
+    border: 3px dashed rgba(0, 0, 0, 0.1);
+}
+
+    .form-signin .checkbox {
+        font-weight: normal;
+        margin: 10px 30px;
+    }
+
+    .form-signin .form-control {
+        margin-top: -1px;
+        margin-bottom: -1px;
+        border-radius: 0;
+    }
+
+    .form-signin div {
+        z-index: 2;
+    }
+
+        .form-signin div:first-of-type > .form-control {
+            margin-bottom: -1px;
+            border-radius: 4px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .form-signin div:last-of-type > .form-control {
+            border-radius: 4px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            margin-bottom: 15px;
+        }
+
+    .form-signin > * > a {
+        float: right;
+    }
+
+button {
+    margin-bottom: 10px;
+}
