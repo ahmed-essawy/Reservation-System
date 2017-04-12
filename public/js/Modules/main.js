@@ -1,5 +1,5 @@
 ﻿var App = angular.module("Main", ["ngRoute"]);
-App.config(function ($routeProvider, $locationProvider, $interpolateProvider) {
+App.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", { templateUrl: "/home", activeactivetab: "Home" })
         .when("/home", { templateUrl: "/home", activeactivetab: "Home" })
@@ -11,4 +11,4 @@ App.config(function ($routeProvider, $locationProvider, $interpolateProvider) {
         .when("/404", { template: "<h2 class=\"text-center alert alert-danger\">Page not found.</h2>" })
         .otherwise({ redirectTo: "/404" })
     $locationProvider.html5Mode({ enabled: true }).hashPrefix("");
-});
+}]);
