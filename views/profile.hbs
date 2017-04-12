@@ -1,5 +1,29 @@
 <div class="row" ng-controller="ProfileCtrl">
-    <div class="col-xs-12">
-        Profile
+    <div class="col-xs-6 col-xs-offset-3">
+        <form name="editForm" ng-submit="Submit()">
+            <input type="hidden" ng-model="User._id" />
+            <div class="form-group" ng-class="{ 'has-error' : editForm.name.$invalid && !editForm.name.$pristine }">
+                <input name="name" ng-model="User.name" class="form-control" placeholder="Name" required />
+                <span ng-show="editForm.name.$invalid && !editForm.name.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : editForm.username.$invalid && !editForm.username.$pristine }">
+                <input name="username" ng-model="User.username" class="form-control" placeholder="Username" required />
+                <span ng-show="editForm.username.$invalid && !editForm.username.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : editForm.email.$invalid && !editForm.email.$pristine }">
+                <input type="email" name="email" ng-model="User.email" class="form-control" placeholder="Email" required />
+                <span ng-show="editForm.email.$invalid && !editForm.email.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : editForm.password.$invalid && !editForm.password.$pristine }">
+                <input type="password" name="password" ng-model="User.password" class="form-control" placeholder="Password" required />
+                <span ng-show="editForm.password.$invalid && !editForm.password.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : editForm.pass2.$invalid && !editForm.pass2.$pristine }">
+                <input type="password" name="pass2" ng-model="User.pass2" class="form-control" placeholder="Confirm Password" />
+                <span ng-show="editForm.pass2.$invalid && !editForm.pass2.$pristine" class="help-block">X</span>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+        </form>
+        <span id="response" class="right"></span>
     </div>
 </div>

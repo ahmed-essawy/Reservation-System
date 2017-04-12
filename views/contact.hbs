@@ -1,5 +1,19 @@
 <div class="row" ng-controller="ContactCtrl">
     <div class="col-xs-12">
-        Contact
+        <form name="contactForm" ng-submit="Submit()">
+            <div class="form-group" ng-class="{ 'has-error' : contactForm.name.$invalid && !contactForm.name.$pristine }">
+                <input name="name" ng-model="Contact.name" class="form-control" placeholder="Name" required />
+                <span ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
+                <input type="email" name="email" ng-model="Contact.email" class="form-control" placeholder="Email" required />
+                <span ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="help-block">X</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : contactForm.msg.$invalid && !contactForm.msg.$pristine }">
+                <textarea name="msg" ng-model="Contact.msg" class="form-control" rows="5" placeholder="Add your message here..."></textarea>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+        </form>
+        <span id="response" class="right"></span>
     </div>
 </div>
