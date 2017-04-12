@@ -52,34 +52,38 @@ Mongodb.MongoClient.connect("mongodb://127.0.0.1:27017/MEANProject", (err, db) =
             else
                 res.redirect('/#/contact');
         })
-        .get(new RegExp("login(\\.(?:htm|html))?(\\?.*)?$"),
-        (req, res) => {
+        .get(new RegExp("login(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
             if (req.xhr || req.headers.accept.indexOf('json') > -1)
                 res.render('login', { layout: false, login: true });
             else
                 res.redirect('/#/login');
         })
-        .get(new RegExp("register(\\.(?:htm|html))?(\\?.*)?$"),
-        (req, res) => {
+        .get(new RegExp("register(\\.(?:htm|html))?(\\?.*)?$"), (req, res) => {
             if (req.xhr || req.headers.accept.indexOf('json') > -1)
                 res.render('login', { layout: false, register: true });
             else
                 res.redirect('/#/register');
         })
-        .post("/loginuser", (req, res) => {
+        .post("/API/Login", (req, res) => {
             db.collection("Users").find({ username: req.body.username, password: md5(req.body.password) }).toArray((err, data) => {
                 ret_val = { correct: false, user: data[0] }
                 if (data.length > 0) { delete ret_val.user.password; ret_val.correct = true; }
-                res.json(ret_val)
-            })
+                res.json(ret_val);
+            });
         })
-        .post("/registeruser", (req, res) => {
-            db.collection("Users").insert({ name: req.body.name, username: req.body.username, password: md5(req.body.password) });
+        .post("/API/User", (req, res) => {
+            db.collection("Users").insert({ name: req.body.name, username: req.body.username, email: req.body.email, password: md5(req.body.password) });
             db.collection("Users").find({ username: req.body.username, password: md5(req.body.password) }).toArray((err, data) => {
                 ret_val = { correct: false, user: data[0] }
                 if (data.length > 0) { delete ret_val.user.password; ret_val.correct = true; }
-                res.json(ret_val)
-            })
+                res.json(ret_val);
+            });
+        })
+        .put("/API/User", (req, res) => {
+            db.collection("Users").updateOne({ _id: new Mongodb.ObjectId(req.body._id) }, { name: req.body.name, username: req.body.username, email: req.body.email, password: md5(req.body.password) }, { upsert: true }, (err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
         })
         .get("/API/Employees", (req, res) => {
             db.collection("Employees").find().toArray((err, data) => {
@@ -99,8 +103,15 @@ Mongodb.MongoClient.connect("mongodb://127.0.0.1:27017/MEANProject", (err, db) =
                 else res.json(data);
             });
         })
-        .delete("/API/Employee", (req, res) => {
+        .delete("/API/Employee",
+        (req, res) => {
             db.collection("Employees").remove({ _id: new Mongodb.ObjectId(req.body._id) }, (err, data) => {
+                if (err) return res.send(err);
+                else res.json(data);
+            });
+        })
+        .post("/API/Message", (req, res) => {
+            db.collection("Messages").insertOne({ name: req.body.name, email: req.body.email, message: req.body.msg }, (err, data) => {
                 if (err) return res.send(err);
                 else res.json(data);
             });
